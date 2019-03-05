@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            div a {
+                color: #000000;
+            }
+
+            div>a {
+                color: #cccccc;
+            }
+
+            p+a {
+                color: yellow;
+            }
+
+            p~a {
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>关系选择器</h2>
+        <h3>因为关系选择器的标签数量相同，且都是类选择器，所以后者覆盖前者</h3>
+        <div class="xl">
+            <p>p</p>
+            <a href="javascript:;">a1</a>
+            <a href="javascript:;">a2</a>
+            <a href="javascript:;">a3</a>
+        </div>
+        <h2>属性选择器</h2>
+    </body>
+
+</html>
