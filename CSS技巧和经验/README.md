@@ -49,7 +49,7 @@
     </div>
     ```
 
-+ 方法2：(**建议 CSS3 IE9+**) 使用 ```ul:nth-child(Xn)``` 或 ```ul:nth-of-type(Xn)```，X为列表列数，只需要 **2层结构**
++ 方法2：(**建议 CSS3 IE9+**) 使用 ```ul:nth-child(Xn)``` 或 ```ul:nth-of-type(Xn)```，X为列表列数，优点是只需要 **2层结构**
 
     示例：
     
