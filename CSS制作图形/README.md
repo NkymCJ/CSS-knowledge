@@ -4,9 +4,9 @@
 
 ### 制作三角形
 
-**通过控制 border四边形 的 4 个方向的 border 来实现**
-
 ![border四边形](./images/border四边形.jpg)
+
+**通过控制 border四边形 的 4 个方向的 border 来实现**
 
 **三角形 箭头 的朝向决定取 无宽高的border四边形的四块border三角形的 相反 方向块**
 
@@ -14,7 +14,7 @@
 
 **不需要的border颜色设为 transparent，style设为 dashed(兼容IE6，因为IE6下 transparent 属性无效)**
 
-**其他默认设置为 height: 0;width: 0;font-size: 0;line-height: 0;overflow: hidden;**
+其他默认设置为 **height: 0;width: 0;font-size: 0;line-height: 0;overflow: hidden;**
 
 1. 例：等腰三角形。箭头向上，底50px，高50px，颜色为#3366ff。
 

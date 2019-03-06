@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>演示</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            .test1_1 {
+                font-size: 0;
+                line-height: 0;
+                width: 200px;
+            }
+
+            .test1_1 img {
+                height: 100px;
+                width: 100px;
+            }
+
+            .test2_1 {
+                width: 320px;
+                overflow: hidden;
+            }
+
+            .test2_1 ul {
+                width: 330px;
+                overflow: hidden;
+            }
+
+            .test2_1 li {
+                float: left;
+                height: 100px;
+                width: 100px;
+                background-color: #aaa;
+                margin-right: 10px;
+            }
+
+            .test2_2 {
+                width: 320px;
+                overflow: hidden;
+            }
+
+            .test2_2 ul {
+                overflow: hidden;
+                margin-right: -10px;
+            }
+
+            .test2_2 li {
+                float: left;
+                height: 100px;
+                width: 100px;
+                background-color: #aaa;
+                margin-right: 10px;
+            }
+
+            .test2_3 {
+                width: 320px;
+                overflow: hidden;
+            }
+
+            .test2_3 li {
+                float: left;
+                height: 100px;
+                width: 100px;
+                background-color: #aaa;
+                margin-right: 10px;
+            }
+
+            .test2_3 li:nth-child(3n) {
+                margin-right: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>演示</h1>
+        <hr>
+        <h2>1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题</h2>
+        <div class="test1_1">
+            <img src="./images/ceshi.jpg" alt="测试">
+            <img src="./images/ceshi.jpg" alt="测试">
+            <img src="./images/ceshi.jpg" alt="测试">
+        </div>
+        <h2>2. 清除列表每行最右侧项的右边距</h2>
+        <div class="test2_1">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="test2_2">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <ul class="test2_3">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </body>
+
+</html>
