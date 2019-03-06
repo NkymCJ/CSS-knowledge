@@ -22,6 +22,46 @@
             p~a {
                 color: red;
             }
+
+            .not li:not(:last-child) {
+                border-bottom: 1px solid #ddd;
+            }
+
+            .empty:empty {
+                display: block;
+                height: 20px;
+                width: 20px;
+                background-color: #ccc;
+            }
+
+            .firstChild p:nth-child(0) {
+                color: #ff0000
+            }
+
+            #aaa:target {
+                color: yellow;
+            }
+
+            p.fLetter {
+                width: 200px;
+                padding: 5px 10px;
+                border: 1px solid #ddd;
+                font:14px/1.5 simsun,serif,sans-serif;
+            }
+
+            p.fLetter:first-letter {
+                float: left;
+                font-size: 40px;
+                font-weight: bold;
+                line-height: 1;
+            }
+
+            p.fLetter::first-letter {
+                float: left;
+                font-size: 40px;
+                font-weight: bold;
+                line-height: 1;
+            }
         </style>
     </head>
 
@@ -34,7 +74,22 @@
             <a href="javascript:;">a2</a>
             <a href="javascript:;">a3</a>
         </div>
-        <h2>属性选择器</h2>
+        <h2>伪类选择器</h2>
+        <ul class="not">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <span class="empty"></span>
+        <span class="empty">123</span>
+        <a href="#aaa">111</a>
+        <div id="aaa">aaa</div>
+        <div class="firstChild">
+            <p>0</p>
+            <span>1</span>
+            <p>2</p>
+        </div>
+        <p class="fLetter">今天，阳光明媚，晴空万里，非常适合户外活动，如踏青、远足之类的。长期坐在办公室的同学们要多注意运动。</p>
     </body>
 
 </html>
