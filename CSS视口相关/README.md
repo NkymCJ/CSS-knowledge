@@ -4,7 +4,7 @@
 
 用户正在看到的网站的区域，也就是移动设备物理屏幕的可视区域，不同设备不同尺寸
 
-![visualViewport](/images/visualViewport.png)
+![visualViewport](./images/visualViewport.png)
 
 ### layout viewport 布局视口
 
@@ -12,7 +12,7 @@
 
 2. 后来，**移动设备的浏览器** 都 **默认设置** 了一个 **viewport meta标签**，定义一个虚拟的 **布局视口(layout viewport)**，用于解决页面在移动端的显示问题。大部分移动端浏览器都将这个设置为 **980px**，所以PC上的网页基本能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页 (Apple 首先提出)
 
-![layoutViewport](/images/layoutViewport.png)
+![layoutViewport](./images/layoutViewport.png)
 
 ### ideal viewport 理想视口(完美视口)
 
