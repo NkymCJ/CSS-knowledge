@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>演示</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            html{
+                height: 100%;
+                width: 100%;
+                border: 2px solid #333333;
+            }
+
+            .largeWidth {
+                width: 980px;
+                height: 1200px;
+                background-color: #ccc;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="largeWidth"></div>
+        <script>
+            console.log(document.documentElement.getBoundingClientRect().width);
+            console.log(document.documentElement.clientWidth);
+            console.log(document.documentElement.offsetWidth);
+        </script>
+    </body>
+
+</html>
