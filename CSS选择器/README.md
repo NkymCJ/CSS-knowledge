@@ -153,13 +153,13 @@
 
         - IE6 在使用该选择符时有个显式的BUG：**选择符** 与 **包含规则的花括号** 之间不能紧挨着，需 **留有空格或换行**
 
-    + E:before / E::before：设置在 **对象前(依据对象树的逻辑结构)** 发生的内容。用来和 **content属性** 一起使用，并且 **必须定义content属性**
+    + E:before / E::before：设置在 **对象内容前(依据对象树的逻辑结构)** 发生的内容。用来和 **content属性** 一起使用，并且 **必须定义content属性**
 
         - 不支持设置属性position、float、list-style-*和一些display值，Firefox3.5开始取消这些限制
 
         - IE10在使用伪元素动画有一个问题，需要使用一个空的:hover来激活
 
-    + E:after / E::after：设置在 **对象后(依据对象树的逻辑结构)** 发生的内容。用来和 **content属性** 一起使用，并且 **必须定义content属性**
+    + E:after / E::after：设置在 **对象内容后(依据对象树的逻辑结构)** 发生的内容。用来和 **content属性** 一起使用，并且 **必须定义content属性**
 
         - 不支持设置属性position、float、list-style-*和一些display值，Firefox3.5开始取消这些限制
 

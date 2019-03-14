@@ -10,6 +10,15 @@
             * {
                 padding: 0;
                 margin: 0;
+                box-sizing: border-box;
+            }
+
+            hr {
+                margin: 10px 0;
+            }
+
+            h3 {
+                margin: 15px 0;
             }
 
             ul {
@@ -79,19 +88,124 @@
             .test2_3 li:nth-child(3n) {
                 margin-right: 0;
             }
+
+            .box {
+                height: 100px;
+                width: 100px;
+                text-align: center;
+                border: 2px solid #aaa;
+                line-height: 100px;
+                background-color: #3366ff;
+            }
+
+            .test3_1 .clear {
+                clear: both;
+            }
+
+            .test3_2 {
+                overflow: hidden;
+                *zoom: 1;
+            }
+
+            .test3_3_parent {
+                float: left;
+            }
+
+            .left {
+                float: left;
+            }
+
+            .other {
+                clear: both;
+            }
+
+            .clearfix:before,
+            /* :before 是为了避免容器子元素上边距合并问题 */
+            .clearfix:after {
+                display: block;
+                content: " ";
+                height: 0;
+                font: 0/0 a;
+                /* 字体大小/行高 字体 */
+                visibility: hidden;
+            }
+
+            .clearfix:after {
+                clear: both;
+            }
+
+            .clearfix {
+                zoom: 1;
+                /* IE < 8 触发 hasLayout */
+            }
+
+            .clearfix1:before,
+            .clearfix1:after {
+                display: table;
+                content: " ";
+                clear: both;
+            }
+
+            .clearfix1 {
+                zoom: 1;
+                /* IE < 8 触发 hasLayout */
+            }
+
+            .test5_1,
+            .test5_2 {
+                width: 120px;
+                background-color: #3366ff;
+            }
+
+            .test5_1 .box,
+            .test5_2 .box {
+                height: 50px;
+                width: 50px;
+                margin-top: 20px;
+                line-height: 50px;
+                border: none;
+                background-color: #aaa;
+            }
+
+            .test5_3,
+            .test5_4 {
+                width: 120px;
+                background-color: #3366ff;
+            }
+
+            .test5_3 .box,
+            .test5_4 .box {
+                height: 50px;
+                width: 50px;
+                margin-bottom: 20px;
+                line-height: 50px;
+                border: none;
+                background-color: #aaa;
+            }
+
+            .test5_2:before {
+                content: " ";
+                display: table;
+            }
+
+            .test5_4:after {
+                content: " ";
+                display: table;
+            }
         </style>
     </head>
 
     <body>
         <h1>演示</h1>
         <hr>
-        <h2>1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题</h2>
+        <h3>1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题</h3>
         <div class="test1_1">
             <img src="./images/ceshi.jpg" alt="测试">
             <img src="./images/ceshi.jpg" alt="测试">
             <img src="./images/ceshi.jpg" alt="测试">
         </div>
-        <h2>2. 清除列表每行最右侧项的右边距</h2>
+        <hr>
+        <h3>2. 清除列表每行最右侧项的右边距</h3>
         <div class="test2_1">
             <ul>
                 <li></li>
@@ -117,6 +231,56 @@
             <li></li>
             <li></li>
         </ul>
+        <hr>
+        <h3>3. 浮动问题</h3>
+        <div class="test3_1">
+            <div class="left box">float:left</div>
+            <div class="left box">float:left</div>
+            <div class="clear"></div>
+        </div>
+        <div class="test3_2">
+            <div class="left box">float:left</div>
+            <div class="left box">float:left</div>
+        </div>
+        <!-- <div class="test3_3">
+            <div class="test3_3_parent">
+                <div class="left box">float:left</div>
+                <div class="left box">float:left</div>
+            </div>
+        </div> -->
+        <div class="test3_4">
+            <div class="left box">float:left</div>
+            <div class="left box">float:left</div>
+            <div style="clear: both;">相邻元素</div>
+        </div>
+        <div class="test3_5 clearfix">
+            <div class="left box">float:left</div>
+            <div class="left box">float:left</div>
+        </div>
+        <div class="test3_6 clearfix1">
+            <div class="left box">float:left</div>
+            <div class="left box">float:left</div>
+        </div>
+        <hr>
+        <h3>5. CSS 垂直外边距合并问题(兄弟元素之间、父子元素之间)</h3>
+        <h4 style="margin-left:20px;margin-bottom: 20px;">父子元素之间</h4>
+        <h5 style="margin-left:20px;">现象：上边距合并，子元素上边距变成了父元素上边距</h5>
+        <div class="test5_1" style="margin-left:20px;">
+            <div class="box"></div>
+        </div>
+        <h5 style="margin-left:20px;">解决：使用:before</h5>
+        <div class="test5_2" style="margin-left:20px;">
+            <div class="box"></div>
+        </div>
+        <h5  style="margin-left:20px;">现象：下边距合并，子元素下边距变成了父元素下边距</h5>
+        <div class="test5_3" style="margin-left:20px;">
+            <div class="box"></div>
+        </div>
+        <h5 style="margin-left:20px;">解决：使用:before</h5>
+        <div class="test5_4" style="margin-left:20px;">
+            <div class="box"></div>
+        </div>
+        <div style="margin-top:20px;"></div>
     </body>
 
 </html>
