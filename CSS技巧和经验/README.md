@@ -262,7 +262,7 @@
 
     **\\0** : 选择IE8+和Opera15以下的浏览器
 
-3. 选择符级Hack
+3. 选择器级Hack
 
     待补充
 
@@ -272,39 +272,44 @@
 
     ![Father-sonMarginMerge](./images/Father-sonMarginMerge.png)
 
-    - 代码：
+    ```
+    /* CSS */
+    .box {height: 50px;width: 50px;line-height: 50px;}
+    .parent{width: 120px;}
+
+    .box{
+        margin-top: 20px; /* 设置子元素的外边距 */
+        /* 或 margin-bottom: 20px; */
+    }
+
+    /* HTML */
+    <div class="parent">
+        <div class="box"></div>
+    </div>
+    ```
+
+    原因：子元素外边距传递给父元素
+
+    解决方法：
+
+    + 使父容器形成BFC(最好再触发hasLayout)，以下为其中一种
 
         ```
-        /* CSS */
-        .box {height: 50px;width: 50px;line-height: 50px;}
-        .parent{height: 120px;width: 120px;}
-
-        .box{
-            margin-top: 20px; /* 设置子元素的外边距 */
+        .parent {
+            overflow: hidden; /* BFC */
+            zoom: 1; /* IE < 8 触发 hasLayout */
         }
-
-        /* HTML */
-        <div class="parent">
-            <div class="box"></div>
-        </div>
         ```
 
-    - 原因：子元素外边距传递给父元素
+    + 使用 ```:before``` / ```:after``` 隔开父与第一个/最后一个子元素，阻止传递
 
-    - 解决方法：
-
-        + 使父容器形成BFC(最好再触发hasLayout) 略
-    
-        + 使用 ```:before``` / ```:after``` 隔开父与第一个/最后一个子元素，阻止传递
-
-            ```
-            /* CSS */
-            parent:after ,
-            parent:before {
-                display: "table";
-                content: " ";
-            }
-            ```
+        ```
+        .parent:before ,
+        .parent:after {
+            display: "table";
+            content: " ";
+        }
+        ```
 
 2. 兄弟元素之间
 

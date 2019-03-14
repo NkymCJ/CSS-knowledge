@@ -168,13 +168,17 @@
             }
 
             .test5_3,
-            .test5_4 {
+            .test5_4,
+            .test5_5,
+            .test5_6 {
                 width: 120px;
                 background-color: #3366ff;
             }
 
             .test5_3 .box,
-            .test5_4 .box {
+            .test5_4 .box,
+            .test5_5 .box, 
+            .test5_6 .box {
                 height: 50px;
                 width: 50px;
                 margin-bottom: 20px;
@@ -191,6 +195,11 @@
             .test5_4:after {
                 content: " ";
                 display: table;
+            }
+
+            .test5_5,
+            .test5_6{
+                overflow: hidden;
             }
         </style>
     </head>
@@ -272,12 +281,20 @@
         <div class="test5_2">
             <div class="box"></div>
         </div>
+        <h5>解决：BFC</h5>
+        <div class="test5_6">
+            <div class="box"></div>
+        </div>
         <h5>现象：下边距合并，子元素下边距变成了父元素下边距</h5>
         <div class="test5_3">
             <div class="box"></div>
         </div>
         <h5>解决：使用:before</h5>
         <div class="test5_4">
+            <div class="box"></div>
+        </div>
+        <h5>解决：BFC</h5>
+        <div class="test5_5">
             <div class="box"></div>
         </div>
     </body>
