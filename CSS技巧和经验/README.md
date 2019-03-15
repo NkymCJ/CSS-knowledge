@@ -108,9 +108,26 @@
         </ul>
         ```
 
-### 3. 浮动问题
+### 3. CSS 负边距
 
-1. **什么是浮动** 容器高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响(破坏)布局的现象。
+1. 介绍：
+
+    <img src="./images/negativeMargin.gif" height="250px" alt="negativeMargin"/>
+
+2. 现象：
+
+    + margin-top / margin-left ：往 上/下 偏移
+。margin-right / margin-bottom : 右往左拉 / 下往上拉，从而覆盖自己
+
+        <img src="./images/negativeMarginAnalysis.png" height="250px" alt="negativeMarginAnalysis"/>
+
+    + 增加宽度，前提是没有设置元素宽度或者元素宽度为auto (清除列表每行最右侧项的右边距，就可以通过使用的这种方法设置第Ⅱ级容器，然后通过Ⅰ级容器设置超出隐藏去制作)
+
+        <img src="./images/negativeMarginAddWidth.png" height="200px" alt="negativeMarginAddWidth"/>
+
+### 4. 浮动问题
+
+1. **什么是浮动** 容器高度不能自动伸长以适应内容的高度，使得内容溢出到容器外面而影响(破坏)布局的现象
 
     ![float](./images/float.png)
 
@@ -122,17 +139,21 @@
 
     方法大致分为两种：1. 使用clear 2. 使父容器形成BFC(最好再触发hasLayout)
 
-    + 方法1：使用 clear 的元素
+    实现效果：
+
+    ![float](./images/clearFloat.png)
+
+    + 方法1：添加 clear 空元素
         
         在容器内尾部插入带 ```clear:both``` 样式的空元素。方法简单，兼容性好，但是每次都需要添加HTML元素，更改结构，不利于维护
         
         ```
         /* CSS */
         .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
+        .box {height:200px;width:200px;}
 
         .clear {
-            clear:both; /* 关键 */
+            clear:both; /* 添加 clear 空元素 */
         }
 
         /* HTML */
@@ -145,15 +166,15 @@
 
     + 方法2(**推荐**)：使用CSS的 overflow 属性
 
-        使用 ```overflow:hidden``` 或 ```overflow:auto``` 生成BFC(Block Formatting Context)。为了兼容低版本IE(IE < 8)，还需要加入 ```zoom:1``` 用以触发hasLayout，虽然可以写成 ```*zoom:1```，仅针对IE < 8，但个人感觉不是很必要
+        使用 ```overflow:hidden``` 或 ```overflow:auto``` 生成BFC。为了兼容低版本IE(IE < 8)，还需要加入 ```zoom:1``` 用以触发hasLayout，虽然可以写成 ```*zoom:1```，仅针对IE < 8，但个人感觉不是很必要
 
         ```
         /* CSS */
         .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
+        .box {height:200px;width:200px;}
 
         .parent {
-            overflow:hidden; /* 生成 BFC */
+            overflow:hidden; /* 生成 BFC，闭合浮动 */
             zoom:1; /* IE < 8 触发 hasLayout */
         }
 
@@ -166,40 +187,11 @@
 
     + 方法3：父容器也设置浮动
 
-        给浮动元素的父容器也添加上浮动属性即可清除内部浮动，但是这样会使其整体浮动，影响布局
+        给浮动元素的父容器也添加上浮动属性即可清除内部浮动，但是这样变成父容器在其容器里浮动
 
-        ```
-        /* CSS */
-        .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
+    + 方法4：使用邻接元素处理
 
-        /* HTML */
-        <div class="parent2">
-            <div class="parent1 left"> <!-- 父容器添加浮动 -->
-                <div class="left box">box</div>
-                <div class="left box">box</div>
-            </div>
-        </div>
-
-        // 分析：parent1有包裹，但parent2没有包裹
-        ```
-
-    + 方法4：使用邻接元素处理(与方法1原理相同)
-
-        浮动元素后面的元素添加 ```clear:both``` 样式
-
-        ```
-        /* CSS */
-        .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
-
-        /* HTML */
-        <div>
-            <div class="left box">box</div>
-            <div class="left box">box</div>
-            <div style="clear: both;">123</div> <!-- 邻接元素添加 clear:both 样式 -->
-        </div>
-        ```
+        给浮动元素后面的元素添加上浮动属性即可清除浮动，原理与方法1相同，但是这样可能会影响邻接元素
 
     + 方法5(**推荐**)：使用CSS的伪对象选择器
 
@@ -210,10 +202,6 @@
         写法1：
 
         ```
-        /* CSS */
-        .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
-
         .clearfix:before , /* 解决父子元素外边距合并问题 */
         .clearfix:after {
             display: block;
@@ -223,69 +211,29 @@
             font: 0/0 a; /* 字体大小/行高 字体 */
             visibility: hidden;
         }
-
         .clearfix:after {
             clear: both;
         }
-
         .clearfix {
             zoom: 1; /* IE < 8 触发 hasLayout */
         }
-
-        /* HTML */
-        <div class="clearfix"> <!-- 添加 clearfix 类 -->
-            <div class="left box">box</div>
-            <div class="left box">box</div>
-        </div>
         ```
 
         写法2：(**更加简洁，Bootstrap使用的就是这种方式**)
 
         ```
-        /* CSS */
-        .left {float:left;}
-        .box {height:200px;width:200px;background-color:#ccc;}
-
         .clearfix:before , /* 解决父子元素外边距合并问题 */
         .clearfix:after {
             content: " ";
             display: "table";
         }
-
         .clearfix:after {
             clear: both;
         }
-
         .clearfix {
             zoom: 1; /* IE < 8 触发 hasLayout */
         }
-
-        /* HTML */
-        <div class="clearfix">
-            <div class="left box">box</div>
-            <div class="left box">box</div>
-        </div>
         ```
-
-### 4. CSS Hack
-
-1. 条件Hack
-
-    待补充
-
-2. 属性级Hack
-
-    **\_** : 选择IE6及以下。(\-)亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线（\_）更为合适
-
-    **\*** : 选择IE7及以下。诸如：(\+)与(\#)之类的均可使用，不过业界对(\*)的认知度更高
-
-    **\\9** : 选择IE6+
-
-    **\\0** : 选择IE8+和Opera15以下的浏览器
-
-3. 选择器级Hack
-
-    待补充
 
 ### 5. CSS 垂直外边距合并问题(父子元素之间、兄弟元素之间)
 
@@ -338,23 +286,23 @@
 
 ### 6. CSS 图替字
 
-### 7. CSS 负边距
+### 7. CSS Hack
 
-1. 介绍：
+1. 条件Hack
 
-    <img src="./images/negativeMargin.gif" height="250px" alt="negativeMargin"/>
+    待补充
 
-2. 现象：
+2. 属性级Hack
 
-    + margin-top / margin-left ：往 上/下 偏移
-。margin-right / margin-bottom : 右往左拉 / 下往上拉，从而覆盖自己
+    **\_** : 选择IE6及以下。(\-)亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线（\_）更为合适
 
-        <img src="./images/negativeMarginAnalysis.png" height="250px" alt="negativeMarginAnalysis"/>
+    **\*** : 选择IE7及以下。诸如：(\+)与(\#)之类的均可使用，不过业界对(\*)的认知度更高
 
-    + 增加宽度，前提是没有设置元素宽度或者元素宽度为auto (清除列表每行最右侧项的右边距，就可以通过使用的这种方法设置第Ⅱ级容器，然后通过Ⅰ级容器设置超出隐藏去制作)
+    **\\9** : 选择IE6+
 
-        <img src="./images/negativeMarginAddWidth.png" height="200px" alt="negativeMarginAddWidth"/>
+    **\\0** : 选择IE8+和Opera15以下的浏览器
 
+3. 选择器级Hack
 
-
+    待补充
         

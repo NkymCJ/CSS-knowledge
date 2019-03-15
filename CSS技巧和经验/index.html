@@ -7,10 +7,19 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>演示</title>
         <style>
+            :root {
+                --box: #EE827E;
+                --parent: #AFD7E7;
+            }
+
             * {
                 padding: 0;
                 margin: 0;
                 box-sizing: border-box;
+            }
+
+            body {
+                padding: 20px;
             }
 
             hr {
@@ -27,164 +36,321 @@
 
             .test1_1 {
                 font-size: 0;
-                line-height: 0;
                 width: 200px;
+                background-color: var(--parent);
             }
 
-            .test1_1 img {
+            .test1_1 .box {
+                display: inline-block;
+                text-align: center;
+                font-size: 16px;
+                line-height: 100px;
+                height: 100px;
+                width: 100px;
+                background-color: var(--box);
+            }
+
+            .test1_2 {
+                width: 100px;
+                background-color: var(--parent);
+            }
+
+            .test1_2 img {
+                display: inline-block;
+                vertical-align: top;
+                text-align: center;
                 height: 100px;
                 width: 100px;
             }
 
+            /* ---------------------- 分界线 ---------------------- */
+
             .test2_1 {
                 width: 320px;
                 overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
             }
 
             .test2_1 ul {
                 width: 330px;
                 overflow: hidden;
+                /* 闭合浮动 */
             }
 
-            .test2_1 li {
+            .test2_1 ul li {
                 float: left;
-                height: 100px;
+                text-align: center;
+                line-height: 100px;
                 width: 100px;
-                background-color: #aaa;
+                height: 100px;
                 margin-right: 10px;
+                background-color: var(--box);
             }
 
             .test2_2 {
                 width: 320px;
                 overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
             }
 
             .test2_2 ul {
-                overflow: hidden;
                 margin-right: -10px;
+                overflow: hidden;
+                /* 闭合浮动 */
             }
 
-            .test2_2 li {
+            .test2_2 ul li {
                 float: left;
-                height: 100px;
+                text-align: center;
+                line-height: 100px;
                 width: 100px;
-                background-color: #aaa;
+                height: 100px;
                 margin-right: 10px;
+                background-color: var(--box);
             }
 
             .test2_3 {
                 width: 320px;
                 overflow: hidden;
+                /* 闭合浮动 */
+                background-color: var(--parent);
             }
 
             .test2_3 li {
                 float: left;
-                height: 100px;
+                text-align: center;
+                line-height: 100px;
                 width: 100px;
-                background-color: #aaa;
+                height: 100px;
                 margin-right: 10px;
+                background-color: var(--box);
             }
 
             .test2_3 li:nth-child(3n) {
                 margin-right: 0;
+                /* 每行第三个box不需要右边距 */
             }
 
-            .box {
+            .test2_4 {
+                width: 210px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_4 ul {
+                width: 220px;
+                overflow: hidden;
+                /* 闭合浮动 */
+                margin-top: -10px;
+            }
+
+            .test2_4 ul li {
+                float: left;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                text-align: center;
+                line-height: 100px;
+                margin-right: 10px;
+                margin-top: 10px;
+            }
+
+            .test2_5 {
+                width: 210px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_5 ul {
+                width: 220px;
+                overflow: hidden;
+                /* 闭合浮动 */
+                margin-bottom: -10px;
+            }
+
+            .test2_5 ul li {
+                float: left;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                text-align: center;
+                line-height: 100px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* ---------------------- 分界线 ---------------------- */
+
+            .test3_1_1 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-top: -10px;
+            }
+
+            .test3_1_2 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-left: -10px;
+            }
+
+            .test3_2_1 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-bottom: -10px;
+            }
+
+            .test3_2_2 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-right: -10px;
+            }
+
+            .test3_3 {
+                margin-left: 200px;
+                width: 200px;
+                height: 100px;
+                /* overflow: hidden; */
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test3_3_1 {
+                margin-right: -50px;
+                margin-left: -50px;
+                height: 100px;
+                background-color: var(--box);
+            }
+
+            /* ---------------------- 分界线 ---------------------- */
+
+            .test4_1 .box {
+                float: left;
                 height: 100px;
                 width: 100px;
-                text-align: center;
-                border: 2px solid #aaa;
                 line-height: 100px;
-                background-color: #3366ff;
+                text-align: center;
+                background-color: var(--box);
             }
 
-            .test3_1 .clear {
+            .test4_1 .clear {
                 clear: both;
             }
 
-            .test3_2 {
+            .test4_2 {
                 overflow: hidden;
-                *zoom: 1;
+                /* 生成 BFC，闭合浮动 */
+                zoom: 1;
+                /* IE < 8 触发 hasLayout */
             }
 
-            .test3_3_parent {
+            .test4_2 .box {
                 float: left;
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
             }
 
-            .left {
-                float: left;
+            .test4_3.clearfix {
+                zoom: 1;
             }
 
-            .other {
-                clear: both;
-            }
-
-            .clearfix:before,
-            /* :before 是为了避免容器子元素上边距合并问题 */
-            .clearfix:after {
+            .test4_3.clearfix:before,
+            .test4_3.clearfix:after {
                 display: block;
                 content: " ";
                 height: 0;
-                font: 0/0 a;
-                /* 字体大小/行高 字体 */
+                width: 0;
+                font-size: 0/0 a;
                 visibility: hidden;
             }
 
-            .clearfix:after {
+            .test4_3.clearfix:after {
                 clear: both;
             }
 
-            .clearfix {
-                zoom: 1;
-                /* IE < 8 触发 hasLayout */
+            .test4_3 .box {
+                float: left;
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
             }
 
-            .clearfix1:before,
-            .clearfix1:after {
+            .test4_4.clearfix {
+                zoom: 1;
+            }
+
+            .test4_4.clearfix:before,
+            .test4_4.clearfix:after {
                 display: table;
                 content: " ";
+
+            }
+
+            .test4_4.clearfix:after {
                 clear: both;
             }
 
-            .clearfix1 {
-                zoom: 1;
-                /* IE < 8 触发 hasLayout */
+            .test4_4 .box {
+                float: left;
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
             }
 
-            .test5_1,
-            .test5_2 {
-                width: 120px;
-                background-color: #3366ff;
+            /* ---------------------- 分界线 ---------------------- */
+
+            .test5_1 {
+                width: 200px;
+                background-color: var(--parent);
             }
 
-            .test5_1 .box,
-            .test5_2 .box {
-                height: 50px;
-                width: 50px;
+            .test5_1 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
                 margin-top: 20px;
-                line-height: 50px;
-                border: none;
-                background-color: #aaa;
             }
 
-            .test5_3,
-            .test5_4,
-            .test5_5,
-            .test5_6 {
-                width: 120px;
-                background-color: #3366ff;
+            .test5_2 {
+                width: 200px;
+                background-color: var(--parent);
             }
 
-            .test5_3 .box,
-            .test5_4 .box,
-            .test5_5 .box, 
-            .test5_6 .box {
-                height: 50px;
-                width: 50px;
-                margin-bottom: 20px;
-                line-height: 50px;
-                border: none;
-                background-color: #aaa;
+            .test5_2 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
+                margin-top: 20px;
             }
 
             .test5_2:before {
@@ -192,14 +358,64 @@
                 display: table;
             }
 
-            .test5_4:after {
-                content: " ";
-                display: table;
+            .test5_3 {
+                width: 200px;
+                overflow: hidden;
+                background-color: var(--parent);
             }
 
-            .test5_5,
-            .test5_6{
+            .test5_3 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
+                margin-top: 20px;
+            }
+
+            .test5_4 {
+                width: 200px;
+                background-color: var(--parent);
+            }
+
+            .test5_4 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
+                margin-bottom: 20px;
+            }
+            .test5_5 {
+                width: 200px;
                 overflow: hidden;
+                background-color: var(--parent);
+            }
+
+            .test5_5 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
+                margin-bottom: 20px;
+            }
+            .test5_6 {
+                width: 200px;
+                background-color: var(--parent);
+            }
+
+            .test5_6 .box {
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                background-color: var(--box);
+                margin-bottom: 20px;
+            }
+            .test5_6:after{
+                content: " ";
+                display: table;
             }
         </style>
     </head>
@@ -208,95 +424,133 @@
         <h1>演示</h1>
         <hr>
         <h3>1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题</h3>
+        <h4>1.1 水平方向</h4>
         <div class="test1_1">
-            <img src="./images/box.png" alt="box">
+            <span class="box">box</span>
+            <span class="box">box</span>
+        </div>
+        <h4>1.2 垂直方向</h4>
+        <div class="test1_2">
             <img src="./images/box.png" alt="box">
             <img src="./images/box.png" alt="box">
         </div>
         <hr>
         <h3>2. 清除列表每行最右侧项的右边距</h3>
+        <h4>2.1 直接增加ul宽度</h4>
         <div class="test2_1">
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
             </ul>
         </div>
+        <h4>2.2 使用负边距增加ul宽度</h4>
         <div class="test2_2">
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
             </ul>
         </div>
+        <h4>2.3 使用选择器</h4>
         <ul class="test2_3">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>box</li>
+            <li>box</li>
+            <li>box</li>
+            <li>box</li>
         </ul>
+        <h4>2.4 设计列表，应用CSS 负边距</h4>
+        <h5>2.4.1 使用margin-top，往上偏移</h5>
+        <div class="test2_4">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
+        <h5>2.4.2 使用margin-bottom，底部往里拉，覆盖自己</h5>
+        <div class="test2_5">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
         <hr>
-        <h3>3. 浮动问题</h3>
-        <div class="test3_1">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
+        <h3>3. CSS 负边距</h3>
+        <h4>3.1 margin-top / margin-left 偏移</h4>
+        <h5>3.1.1 margin-top</h5>
+        <div>box</div>
+        <div class="test3_1_1">box</div>
+        <h5>3.1.2 margin-left</h5>
+        <span>box</span>
+        <div class="test3_1_2">box</div>
+        <h4>3.2 margin-bottom / margin-right 往里拉</h4>
+        <h5>3.2.1 margin-bottom</h5>
+        <div class="test3_2_1">box</div>
+        <div>box</div>
+        <h5>3.2.2 margin-right</h5>
+        <div class="test3_2_2">box</div>
+        <span>box</span>
+        <h4>3.3 增加宽度</h4>
+        <div class="test3_3">
+            <div class="test3_3_1"></div>
+        </div>
+        <hr>
+        <h3>4. 浮动问题</h3>
+        <h4>4.1 添加 clear 空元素</h4>
+        <div class="test4_1">
+            <div class="box">box</div>
+            <div class="box">box</div>
             <div class="clear"></div>
         </div>
-        <div class="test3_2">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
+        <h4>4.2 使用CSS的 overflow 属性</h4>
+        <div class="test4_2">
+            <div class="box">box</div>
+            <div class="box">box</div>
         </div>
-        <!-- <div class="test3_3">
-            <div class="test3_3_parent">
-                <div class="left box">float:left</div>
-                <div class="left box">float:left</div>
-            </div>
-        </div> -->
-        <div class="test3_4">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
-            <div style="clear: both;">相邻元素</div>
+        <h4>4.3 使用CSS的伪对象选择器_1</h4>
+        <div class="test4_3 clearfix">
+            <div class="box">box</div>
+            <div class="box">box</div>
         </div>
-        <div class="test3_5 clearfix">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
-        </div>
-        <div class="test3_6 clearfix1">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
+        <h4>4.4 使用CSS的伪对象选择器_2</h4>
+        <div class="test4_4 clearfix">
+            <div class="box">box</div>
+            <div class="box">box</div>
         </div>
         <hr>
         <h3>5. CSS 垂直外边距合并问题(兄弟元素之间、父子元素之间)</h3>
-        <h4>父子元素之间</h4>
-        <h5>现象：上边距合并，子元素上边距变成了父元素上边距</h5>
+        <h4>5.1 父子元素之间</h4>
+        <h5>5.1.1 现象：上边距合并，子元素上边距变成了父元素上边距</h5>
         <div class="test5_1">
-            <div class="box"></div>
+            <div class="box">box</div>
         </div>
-        <h5>解决：使用:before</h5>
+        <h5>5.1.1.1 解决：使用:before</h5>
         <div class="test5_2">
-            <div class="box"></div>
+            <div class="box">box</div>
         </div>
-        <h5>解决：BFC</h5>
-        <div class="test5_6">
-            <div class="box"></div>
-        </div>
-        <h5>现象：下边距合并，子元素下边距变成了父元素下边距</h5>
+        <h5>5.1.1.2 解决：BFC</h5>
         <div class="test5_3">
-            <div class="box"></div>
+            <div class="box">box</div>
         </div>
-        <h5>解决：使用:before</h5>
+        <h5>5.1.2 现象：下边距合并，子元素下边距变成了父元素下边距</h5>
         <div class="test5_4">
-            <div class="box"></div>
+            <div class="box">box</div>
         </div>
-        <h5>解决：BFC</h5>
+        <h5>5.1.2.1 解决：使用:before</h5>
         <div class="test5_5">
-            <div class="box"></div>
+            <div class="box">box</div>
         </div>
+        <h5>5.1.2.2 解决：BFC</h5>
+        <div class="test5_6">
+            <div class="box">box</div>
+        </div>
+        <hr>
     </body>
 
 </html>
