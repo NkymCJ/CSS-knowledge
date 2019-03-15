@@ -2,90 +2,111 @@
 
 ### 1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题
 
-+ 方法1：设置为 ```img{display:block;}```
++ 分析：
 
-+ 方法2：垂直排放的话，设置为 ```img{vertical-align:top;}```
+    <img src="./images/inlineBlockElementSpacing-horizontal.png" height="150px" alt="inlineBlockElementSpacing"/> <img src="./images/inlineBlockElementSpacing-vertical.png" height="150px" alt="inlineBlockElementSpacing"/>
 
-+ 方法3：(**建议**) 设置为 ```.parent{font-size:0;line-height:0;}```
++ 方法1：解决垂直间距问题。行内块元素设置 ```display:block;```
 
-+ 方法4：(**不建议**) 去掉html的行内块元素之间的空格，使它们紧挨着
++ 方法2：解决垂直间距问题。行内块元素设置 ```vertical-align:top;```
 
-### 2. 清除列表每行最右侧项的右边距
-
-+ 方法1：使用 ```overflow:hidden``` 配合 **增加宽度** 或 **负边距(负边距也能够增加宽度)**，缺点是需要 **3层结构**
-
-    示例：
-
++ 方法3：(**不推荐**) 解决水平间距问题。去掉html的行内块元素之间的空格，使它们紧挨着，或者将之间空格进行注释。缺点是影响阅读，不优雅
+    
     ```
-    /* CSS */
-    .test {
-        width: 320px;
-        overflow: hidden; /* 超出隐藏 */
-    }
-
-    .test ul {
-        width: 330px; /* 增加宽度 */
-        overflow: hidden; /* 闭合浮动 */
-    }
-
-    /* 或者采用以下方式 */
-    .test ul {
-        margin-right: -10px; /* 负边距 */
-        overflow: hidden; /* 闭合浮动 */
-    }
-
-    .test ul li {
-        float: left;
-        height: 100px;
-        width: 100px;
-        background-color: #aaa;
-        margin-right: 10px;
-    }
-
-    /* HTML */
-    <div class="test">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+    <!-- HTML -->
+    <div>
+        <span>box</span><span>box</span>
+    </div>
+    <!-- 或者 -->
+    <div>
+        <span>box</span><!--
+        --><span>box</span>
     </div>
     ```
 
-+ 方法2：(**建议 CSS3 IE9+**) 使用 ```ul:nth-child(Xn)``` 或 ```ul:nth-of-type(Xn)```，X为列表列数，优点是只需要 **2层结构**
++ 方法4：(**推荐**) 同时解决垂直间距和水平间距。行内块元素的父容器设置 ```font-size:0;```。因为属性可继承性，行内块元素需要重设其值
 
-    示例：
++ 方法5：行内块元素的父容器的 ```word-spacing``` 或 ```letter-spacing``` 设置成负X值(X：不同浏览器不同值)。因为属性可继承性，行内块元素需要重设其值为 0
+
+---
+
+### 2. 清除列表每行最右侧项的右边距
+
++ 效果：
     
-    ```
-    /* CSS */
-    ul {
-        width: 320px;
-        overflow: hidden; /* 闭合浮动 */
-    }
+    <img src="./images/deleteLiMarginRight.png" height="150px" alt="deleteLiMarginRight"/>
 
-    ul li {
-        float: left;
-        height: 100px;
-        width: 100px;
-        background-color: #aaa;
-        margin-right: 10px;
-    }
++ 方法1：(**推荐**) ul容纳li，ul的父级再把ul多出的最右边的边距给隐藏掉：
+使用 ```overflow:hidden``` (ul闭合赋动和ul的父级超出隐藏)配合直接增加ul宽度(使用负边距的方式也能够增加宽度，原因请看本文中的 CSS 负边距)。缺点是3层结构且需要设置多一层宽度。优点是无兼容性问题
 
-    ul li:nth-child(3n) {
-        margin-right: 0;
-    }
+    + 分析：
+    
+        <img src="./images/deleteLiMarginRightBy3Decker.png" height="200px" alt="deleteLiMarginRightBy3Decker"/>
 
-    /* HTML */
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-    ```
+    + 代码：
+
+        ```
+        /* CSS */
+        .test {
+            width: 320px;
+            overflow: hidden; /* 超出隐藏 */
+        }
+
+        .test ul {
+            width: 330px; /* 增加宽度 */
+            overflow: hidden; /* 闭合浮动 */
+        }
+
+        /* 或者采用以下方式 */
+        .test ul {
+            margin-right: -10px; /* 负边距 */
+            overflow: hidden; /* 闭合浮动 */
+        }
+
+        .test ul li {
+            float: left;
+            height: 100px;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        /* HTML */
+        <div class="test">
+            <ul>
+                <li></li>
+                ...
+            </ul>
+        </div>
+        ```
+
++ 方法2：选取每一行的最后一个元素，设置其右边距为0：使用 ```ul:nth-child(Xn)``` 或 ```ul:nth-of-type(Xn)```，X为列表列数。缺点是由兼容问题，选择器为CSS3属性。优点是只需要2层结构
+    
+    + 代码：
+
+        ```
+        /* CSS */
+        ul {
+            width: 320px;
+            overflow: hidden; /* 闭合浮动 */
+        }
+
+        ul li {
+            float: left;
+            height: 100px;
+            width: 100px;
+            margin-right: 10px;
+        }
+
+        ul li:nth-child(3n) { /* 选取每一行的第三个元素 */
+            margin-right: 0;
+        }
+
+        /* HTML */
+        <ul>
+            <li></li>
+            ...
+        </ul>
+        ```
 
 ### 3. 浮动问题
 
@@ -103,7 +124,7 @@
 
     + 方法1：使用 clear 的元素
         
-        在容器内尾部插入带 ```clear:both``` 样式的空元素。方法简单，兼容性好，但是需要添加重复HTML元素，更改结构，不利于维护
+        在容器内尾部插入带 ```clear:both``` 样式的空元素。方法简单，兼容性好，但是每次都需要添加HTML元素，更改结构，不利于维护
         
         ```
         /* CSS */
@@ -116,15 +137,15 @@
 
         /* HTML */
         <div>
-            <div class="left box">123</div>
-            <div class="left box">456</div>
+            <div class="left box">box</div>
+            <div class="left box">box</div>
             <div class="clear"></div> <!-- 添加HTML元素 -->
         </div>
         ```
 
     + 方法2(**推荐**)：使用CSS的 overflow 属性
 
-        使用 ```overflow:hidden``` 或 ```overflow:auto``` 生成BFC(Block Formatting Context)。为了兼容低版本IE(IE < 8)，还需要加入 ```zoom:1``` 用以触发hasLayout
+        使用 ```overflow:hidden``` 或 ```overflow:auto``` 生成BFC(Block Formatting Context)。为了兼容低版本IE(IE < 8)，还需要加入 ```zoom:1``` 用以触发hasLayout，虽然可以写成 ```*zoom:1```，仅针对IE < 8，但个人感觉不是很必要
 
         ```
         /* CSS */
@@ -138,8 +159,8 @@
 
         /* HTML */
         <div class="parent">
-            <div class="left box">box1</div>
-            <div class="left box">box2</div>
+            <div class="left box">box</div>
+            <div class="left box">box</div>
         </div>
         ```
 
@@ -154,11 +175,12 @@
 
         /* HTML */
         <div class="parent2">
-            <div class="parent1 left">
-                <div class="left box">box1</div>
-                <div class="left box">box2</div>
+            <div class="parent1 left"> <!-- 父容器添加浮动 -->
+                <div class="left box">box</div>
+                <div class="left box">box</div>
             </div>
         </div>
+
         // 分析：parent1有包裹，但parent2没有包裹
         ```
 
@@ -173,18 +195,17 @@
 
         /* HTML */
         <div>
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
-            <div style="clear: both;">123</div>
+            <div class="left box">box</div>
+            <div class="left box">box</div>
+            <div style="clear: both;">123</div> <!-- 邻接元素添加 clear:both 样式 -->
         </div>
-
         ```
 
     + 方法5(**推荐**)：使用CSS的伪对象选择器
 
-        使用 ```:after``` 在容器内部最后插入元素，为元素添加 ```clear:both``` 样式以清除浮动，同时为了兼容低版本IE(IE < 8)，设置容器 ```zoom:1``` 触发hasLayout
+        第一步，使用 ```:after``` 在父容器内部最后插入一个空的块元素，为元素添加 ```clear:both``` 样式以清除浮动，同时为了兼容低版本IE(IE < 8)，设置父容器 ```zoom:1``` 触发hasLayout，虽然可以写成 ```*zoom:1```，仅针对IE < 8，但个人感觉不是很必要
 
-        使用 ```:before``` 是为了同时解决父子元素外边距合并问题
+        第二步，使用 ```:before``` ，为了同时解决父子元素外边距合并问题
 
         写法1：
 
@@ -212,9 +233,9 @@
         }
 
         /* HTML */
-        <div class="clearfix">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
+        <div class="clearfix"> <!-- 添加 clearfix 类 -->
+            <div class="left box">box</div>
+            <div class="left box">box</div>
         </div>
         ```
 
@@ -241,8 +262,8 @@
 
         /* HTML */
         <div class="clearfix">
-            <div class="left box">float:left</div>
-            <div class="left box">float:left</div>
+            <div class="left box">box</div>
+            <div class="left box">box</div>
         </div>
         ```
 
@@ -314,3 +335,26 @@
 2. 兄弟元素之间
 
     待补充
+
+### 6. CSS 图替字
+
+### 7. CSS 负边距
+
+1. 介绍：
+
+    <img src="./images/negativeMargin.gif" height="250px" alt="negativeMargin"/>
+
+2. 现象：
+
+    + margin-top / margin-left ：往 上/下 偏移
+。margin-right / margin-bottom : 右往左拉 / 下往上拉，从而覆盖自己
+
+        <img src="./images/negativeMarginAnalysis.png" height="250px" alt="negativeMarginAnalysis"/>
+
+    + 增加宽度，前提是没有设置元素宽度或者元素宽度为auto (清除列表每行最右侧项的右边距，就可以通过使用的这种方法设置第Ⅱ级容器，然后通过Ⅰ级容器设置超出隐藏去制作)
+
+        <img src="./images/negativeMarginAddWidth.png" height="200px" alt="negativeMarginAddWidth"/>
+
+
+
+        

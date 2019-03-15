@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>演示</title>
+        <style>
+            :root {
+                --box: #EE827E;
+                --parent: #AFD7E7;
+            }
+
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                padding: 0 20px;
+            }
+
+            hr {
+                margin: 10px 0;
+            }
+
+            h3 {
+                margin: 15px 0;
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            .test1_1 {
+                font-size: 0;
+                width: 200px;
+                background-color: var(--parent);
+            }
+
+            .test1_1 .box {
+                display: inline-block;
+                text-align: center;
+                font-size: 16px;
+                line-height: 100px;
+                height: 100px;
+                width: 100px;
+                background-color: var(--box);
+            }
+
+            .test1_2 {
+                width: 100px;
+                background-color: var(--parent);
+            }
+
+            .test1_2 img {
+                display: inline-block;
+                vertical-align: top;
+                text-align: center;
+                height: 100px;
+                width: 100px;
+            }
+
+            /* ---------------------- 分界线 ---------------------- */
+
+            .test2_1 {
+                width: 320px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_1 ul {
+                width: 330px;
+                overflow: hidden;
+                /* 闭合浮动 */
+            }
+
+            .test2_1 ul li {
+                float: left;
+                text-align: center;
+                line-height: 100px;
+                width: 100px;
+                height: 100px;
+                margin-right: 10px;
+                background-color: var(--box);
+            }
+
+            .test2_2 {
+                width: 320px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_2 ul {
+                margin-right: -10px;
+                overflow: hidden;
+                /* 闭合浮动 */
+            }
+
+            .test2_2 ul li {
+                float: left;
+                text-align: center;
+                line-height: 100px;
+                width: 100px;
+                height: 100px;
+                margin-right: 10px;
+                background-color: var(--box);
+            }
+
+            .test2_3 {
+                width: 320px;
+                overflow: hidden;
+                /* 闭合浮动 */
+                background-color: var(--parent);
+            }
+
+            .test2_3 li {
+                float: left;
+                text-align: center;
+                line-height: 100px;
+                width: 100px;
+                height: 100px;
+                margin-right: 10px;
+                background-color: var(--box);
+            }
+
+            .test2_3 li:nth-child(3n) {
+                margin-right: 0;
+                /* 每行第三个box不需要右边距 */
+            }
+
+            .test2_4 {
+                width: 210px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_4 ul {
+                width: 220px;
+                overflow: hidden;
+                /* 闭合浮动 */
+                margin-top: -10px;
+            }
+
+            .test2_4 ul li {
+                float: left;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                text-align: center;
+                line-height: 100px;
+                margin-right: 10px;
+                margin-top: 10px;
+            }
+
+            .test2_5 {
+                width: 210px;
+                overflow: hidden;
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test2_5 ul {
+                width: 220px;
+                overflow: hidden;
+                /* 闭合浮动 */
+                margin-bottom: -10px;
+            }
+
+            .test2_5 ul li {
+                float: left;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                text-align: center;
+                line-height: 100px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* ---------------------- 分界线 ---------------------- */
+
+            .test3_1_1 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-top: -10px;
+            }
+
+            .test3_1_2 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-left: -10px;
+            }
+
+            .test3_2_1 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-bottom: -10px;
+            }
+
+            .test3_2_2 {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background-color: var(--box);
+                line-height: 100px;
+                text-align: center;
+                margin-right: -10px;
+            }
+
+            .test3_3 {
+                margin-left: 200px;
+                width: 200px;
+                height: 100px;
+                /* overflow: hidden; */
+                /* 超出隐藏 */
+                background-color: var(--parent);
+            }
+
+            .test3_3_1 {
+                margin-right: -50px;
+                margin-left: -50px;
+                height: 100px;
+                background-color: var(--box);
+            }
+
+
+            h5,h4{
+                margin: 30px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>演示</h1>
+        <hr>
+        <h3>1. 行内块元素(img、a等)之间(水平、垂直)产生的几像素间距问题</h3>
+        <h4>1.1 水平方向</h4>
+        <div class="test1_1">
+            <span class="box">box</span>
+            <span class="box">box</span>
+        </div>
+        <h4>1.2 垂直方向</h4>
+        <div class="test1_2">
+            <img src="./images/box.png" alt="box">
+            <img src="./images/box.png" alt="box">
+        </div>
+        <hr>
+        <h3>2. 清除列表每行最右侧项的右边距</h3>
+        <h4>2.1 直接增加ul宽度</h4>
+        <div class="test2_1">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
+        <h4>2.2 使用负边距增加ul宽度</h4>
+        <div class="test2_2">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
+        <h4>2.3 使用选择器</h4>
+        <ul class="test2_3">
+            <li>box</li>
+            <li>box</li>
+            <li>box</li>
+            <li>box</li>
+        </ul>
+        <h4>2.4 设计列表，应用CSS 负边距</h4>
+        <h5>2.4.1 使用margin-top，往上偏移</h5>
+        <div class="test2_4">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
+        <h5>2.4.2 使用margin-bottom，底部往里拉，覆盖自己</h5>
+        <div class="test2_5">
+            <ul>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+                <li>box</li>
+            </ul>
+        </div>
+        <hr>
+        <h3>3. CSS 负边距</h3>
+        <h4>3.1 margin-top / margin-left 偏移</h4>
+        <h5>3.1.1 margin-top</h5>
+        <div>box</div>
+        <div class="test3_1_1">box</div>
+        <h5>3.1.2 margin-left</h5>
+        <span>box</span>
+        <div class="test3_1_2">box</div>
+        <h4>3.2 margin-bottom / margin-right 往里拉</h4>
+        <h5>3.2.1 margin-bottom</h5>
+        <div class="test3_2_1">box</div>
+        <div>box</div>
+        <h5>3.2.2 margin-right</h5>
+        <div class="test3_2_2">box</div>
+        <span>box</span>
+        <h4>3.3 增加宽度</h4>
+        <div class="test3_3">
+            <div class="test3_3_1"></div>
+        </div>
+
+
+
+
+
+        <h3>4. 浮动问题</h3>
+
+
+
+        <hr>
+        <h3>5. CSS 垂直外边距合并问题(兄弟元素之间、父子元素之间)</h3>
+        <h4>父子元素之间</h4>
+        <h5>现象：上边距合并，子元素上边距变成了父元素上边距</h5>
+
+        <h5>解决：使用:before</h5>
+
+        <h5>解决：BFC</h5>
+
+        <h5>现象：下边距合并，子元素下边距变成了父元素下边距</h5>
+
+        <h5>解决：使用:before</h5>
+
+        <h5>解决：BFC</h5>
+
+    </body>
+
+</html>
