@@ -282,17 +282,54 @@
 
 2. 兄弟元素之间
 
-    待补充
+    只设一个元素的外边距。此外，还有其他方法，但是个人感觉不是很妥，所以此处略
 
 ### 6. CSS 图替字
 
-### 7. CSS Hack
+待补充
+
+### 7. CSS Hack(能不用就不用)
 
 1. 条件Hack
 
-    待补充
+    + 语法：
 
-2. 属性级Hack
+        ```
+        <!--[if <keywords>? IE <version>?]>
+            HTML代码块
+        <![endif]-->
+        ```
+
+    + 取值：
+
+        + keywords：关键字
+
+            | keywords | 解释 |
+            | :- | :- |
+            | 空 | 指定是否IE或IE某个版本 |
+            | gt (greater than) | 选择大于指定版本的IE版本 |
+            | gte (greater than or equal) | 选择大于或等于指定版本的IE版本 |
+            | lt (less than) | 选择小于指定版本的IE版本 |
+            | lte (less than or equal) | 选择小于或等于指定版本的IE版本 |
+            | ! | 选择除指定版本外的所有IE版本 |
+
+        + version：指定IE版本
+
+    + 使用：条件Hack是HTML级别的(包含但不仅是CSS的Hack，可以选择任何HTML代码块)
+
+        ```
+        <!--[if IE]>
+            <p>你在非IE中将看不到我的身影</p>
+        <![endif]-->
+
+        <!--[if lt IE 7]>
+            <style>
+            .test{color:red;}
+            </style>
+        <![endif]-->
+        ```
+
+2. 属性Hack
 
     **\_** : 选择IE6及以下。(\-)亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线（\_）更为合适
 
@@ -302,7 +339,14 @@
 
     **\\0** : 选择IE8+和Opera15以下的浏览器
 
-3. 选择器级Hack
+3. 选择器Hack
 
-    待补充
+    1. 不同选择器的浏览器兼容性不同
+
+    2. IE6，IE7：
+
+        ```
+        * html .test { color: #090; } /* For IE6 and earlier */
+        * + html .test { color: #ff0; } /* For IE7 */
+        ```
         
