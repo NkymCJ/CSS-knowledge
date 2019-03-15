@@ -12,7 +12,7 @@ CSS Cascading Style Sheet 层叠样式表
 
     并不是所有的属性都可以继承，可以继承的属性主要以 **color / font- / text- / line-** 开头，还有 **visibility、cursor** 等
 
-    特殊情况：
+    继承的特殊情况：
 
     a标签 的 文字颜色 和 下划线 是不能继承的
 
