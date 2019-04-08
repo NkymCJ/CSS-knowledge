@@ -78,9 +78,9 @@ CSS中获取DPR：-webkit-min-device-pixel-ratio / -webkit-max-device-pixel-rati
 
 ## 6. 理想视口(完美视口) ideal viewport
 
-6.1 布局视口的宽度和视觉视口相同时
+布局视口的宽度和视觉视口相同时
 
-6.2 通过配置viewport meta标签操作布局视口来实现
+通过配置viewport meta标签操作布局视口来实现
 
 属性名|值|说明
 --|:--:|--
@@ -91,15 +91,15 @@ minimum-scale|[0.0-10.0]|定义缩小最小比例，它必须小于或等于maxi
 maximum-scale|[0.0-10.0]|定义放大最大比例，它必须大于或等于minimum-scale设置，相对于理想视口
 user-scalable|yes/no|定义是否允许用户手动缩放页面，默认值yes
 
-- width：如果不指定该属性(或移除viewport meta标签)，则布局视口宽度为厂商默认值(大部分为980px)。如果设置为device-width，则此时布局视口就是理想视口，因为宽度与视觉视口的宽度一致了。可以通过window.innerWidth取得改值
+width：如果不指定该属性(或移除viewport meta标签)，则布局视口宽度为厂商默认值(大部分为980px)。如果设置为device-width，则此时布局视口的宽度与视觉视口的宽度一致了，形成理想视口。可以通过window.innerWidth取得该值
 
-        <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
 
-- initial-scale：如果将页面缩放比例设置为1，也可以得到理想视口
+initial-scale：如果将页面缩放比例设置为1，也可以得到理想视口
 
-        <meta name="viewport" content="initial-scale=1.0" />
+    <meta name="viewport" content="initial-scale=1.0" />
 
-- 要得到理想视口，最好把width=device-width和initial-scale=1.0都写上，因为兼容问题，width=device-width的话苹果不支持，initial-scale=1.0的话IE不支持。如果两个同时出现但值出现冲突，取当中较大的那个的值
+要得到理想视口，最好把width=device-width和initial-scale=1.0都写上，这是因为兼容问题，width=device-width的话苹果不支持，initial-scale=1.0的话IE不支持。如果两个同时出现但值出现冲突，取当中较大的那个的值
 
 ## 7. 自适应布局---定宽
 
