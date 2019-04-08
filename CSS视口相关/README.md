@@ -1,38 +1,109 @@
 # CSS视口相关
 
-### visual viewport 视觉视口
+移动端需要注重视口
 
-用户正在看到的网站的区域，也就是移动设备物理屏幕的可视区域，不同设备不同尺寸
+## 1. 设备像素 Device Pixel 简称 DP
+
+设备像素又叫做物理像素、设备物理像素，是显示器(电脑、手机屏幕)最小的物理显示单位，固有属性 
+
+<img height="300px" src="./images/devicePixel.jpg" alt="DP"/>
+
+1.1 分辨率 Resolution
+
+通常使用分辨率来描述物理像素，如上图，此屏幕的分辨率为1920*1080，表示设备横向有1920个像素点，纵向有1080个像素点
+
+1.2 屏幕尺寸 Screen Size
+
+通常显示器会有一个屏幕尺寸的参数，它是对角线的长度，1英寸大约是2.54厘米，如上图，它的屏幕尺寸为5英寸
+
+1.3 屏幕每英寸的像素点数 Pixels Per Inch 简称 PPI
+
+屏幕每英寸的像素点数也叫屏幕像素密度
+    
+计算公式： 屏幕像素密度 = 屏幕对角线分辨率 / 尺寸，如上图，它的屏幕像素密度为：√(1920^2+1080^2)/5
+
+1.4 (补充) Dots Per Inch 简称 DPI
+
+早期，这个单位用来描述打印机的性能：打印机能用多少个墨点来打印一寸的内容
+
+主体是打印物
+
+计算公式：打印物每英寸的点数 = 打印物的对角线分辨率 / 尺寸
+
+区分PPI和DPI：主语不同
+
+## 2. 设备独立像素 Device Independent Pixel 简称DIP
+
+市面上的显示器种类繁多，相同尺寸的显示器可能分辨率各不相同。此时，如果用物理像素作为单位，设计的同一个元素在相同尺寸不同分辨率上的视觉效果便各不相同。例如：相同尺寸不同分辨率的iPhone3和iPhone4，一个宽160px，高20px的box，在iPhone3(320\*480)上显示是宽度的一半，在iPhone4(640\*960)上则是宽度的1/4，如下图所示
+
+<img height="250px" src="./images/DPAsUnit.png" alt="DPAsUnit"/>
+
+为了解决这个问题，提出了设备独立像素，也叫逻辑像素，用它来设计，这样子相同尺寸的屏幕，不管屏幕的分辨率如何，都能以一样的大小显示。例如iPhone3和iPhone4的设备独立像素都是320，以设备独立像素为单位，最终的视觉效果相同，如下图所示。原因在于1个设备独立像素所拥有的设备像素的数量上：iPhone4是4个物理像素代表1个设备独立像素(横向2个代表1个，纵向2个代表1个)，有此产生了设备像素比这个概念。如下图所示
+
+<img height="250px" src="./images/DIPAsUnit.png" alt="DIPAsUnit"/>
+
+CSS像素属于设备独立像素中的一种
+
+## 3. 设备像素比 Device Pixel Ratio 简称 DPR
+
+计算公式： 设备像素比 = 物理像素 / 设备独立像素
+
+当设备像素比为1:1时，使用1(1×1)个设备像素显示1个CSS像素；
+
+当设备像素比为2:1时，使用4(2×2)个设备像素显示1个CSS像素；
+
+当设备像素比为3:1时，使用9(3×3)个设备像素显示1个CSS像素
+
+当设备像素比大于2时，称为Retina屏
+
+<img height="200px" src="./images/DPR.png" alt="DPR"/>
+
+JS中获取DPR：window.devicePixelRatio
+
+CSS中获取DPR：-webkit-min-device-pixel-ratio / -webkit-max-device-pixel-ratio
+
+## 4. 视觉视口 visual viewport
 
 ![visualViewport](./images/visualViewport.png)
 
-### layout viewport 布局视口
+用户正在看到的网站的区域，也就是移动设备物理屏幕的可视区域，不同设备不同尺寸
 
-1. 早期，由于**移动设备屏幕太小**，不能很好地访问网页
-
-2. 后来，**移动设备的浏览器默认设置viewport meta标签**，定义一个虚拟的 **layout viewport 布局视口**，用于解决页面在移动端的显示问题。大部分移动端浏览器都将这个设置为 **980px**，所以PC上的网页基本能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页 (**Apple 首先提出**)
+## 5. 布局视口 layout viewport
 
 ![layoutViewport](./images/layoutViewport.png)
 
-### ideal viewport 理想视口(完美视口)
+早期，由于移动设备屏幕太小，不能很好地访问网页
 
-1. **类似布局视口，但宽度和视觉视口相同**
+后来，移动设备的浏览器默认设置viewport meta标签，定义一个虚拟的布局视口，用于解决页面在移动端的显示问题。大部分移动端浏览器都将这个设置为980px，所以PC上的网页基本能在手机上呈现，只不过元素看上去很小，一般默认可以通过手动缩放网页(Apple 首先提出)
 
-2. **通过配置 viewport meta标签 来设置 layout viewport 布局视口 达到 ideal viewport**
+## 6. 理想视口(完美视口) ideal viewport
 
-    属性名|值|说明
-    --|:--:|--
-    width|正整数或device-width|定义视口的宽度，单位为像素
-    height|正整数或device-height|定义视口的高度，单位为像素
-    initial-scale|[0.0-10.0]|定义初始缩放值
-    minimum-scale|[0.0-10.0]|定义缩小最小比例，它必须小于或等于maximum-scale设置
-    maximum-scale|[0.0-10.0]|定义放大最大比例，它必须大于或等于minimum-scale设置
-    user-scalable|yes/no|定义是否允许用户手动缩放页面，默认值yes
+6.1 布局视口的宽度和视觉视口相同时
 
-    > width：如果不指定该属性(或移除 viewport meta 标签)，则 layout viewport 布局视口 宽度为厂商默认值(大部分为 980px)。如果设置为 device-width，则此时 layout viewport 布局视口 就是 ideal viewport 理想视口，因为宽度与 visual viewport 视觉视口 宽度一致了。
+6.2 通过配置viewport meta标签操作布局视口来实现
+
+属性名|值|说明
+--|:--:|--
+width|正整数或device-width|定义视口的宽度，单位为像素
+height|正整数或device-height|定义视口的高度，单位为像素
+initial-scale|[0.0-10.0]|定义初始缩放值，相对于理想视口
+minimum-scale|[0.0-10.0]|定义缩小最小比例，它必须小于或等于maximum-scale设置，相对于理想视口
+maximum-scale|[0.0-10.0]|定义放大最大比例，它必须大于或等于minimum-scale设置，相对于理想视口
+user-scalable|yes/no|定义是否允许用户手动缩放页面，默认值yes
+
+- width：如果不指定该属性(或移除viewport meta标签)，则布局视口宽度为厂商默认值(大部分为980px)。如果设置为device-width，则此时布局视口就是理想视口，因为宽度与视觉视口的宽度一致了。可以通过window.innerWidth取得改值
 
         <meta name="viewport" content="width=device-width" />
 
-    > initial-scale：如果将页面缩放比例设置为1，也可以得到 ideal viewport 理想视口
+- initial-scale：如果将页面缩放比例设置为1，也可以得到理想视口
 
         <meta name="viewport" content="initial-scale=1.0" />
+
+- 要得到理想视口，最好把width=device-width和initial-scale=1.0都写上，因为兼容问题，width=device-width的话苹果不支持，initial-scale=1.0的话IE不支持。如果两个同时出现但值出现冲突，取当中较大的那个的值
+
+## 7. 自适应布局---定宽
+
+## 8. 自适应布局---REM
+
+## 9. 自适应布局---淘宝(viewport+rem)
+
