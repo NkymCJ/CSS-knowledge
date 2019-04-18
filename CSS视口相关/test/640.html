@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script>
+            ! function (win, doc) {
+                var size = 640,
+                    com = "width=" + size + ", user-scalable=0, minimal-ui, viewport-fit=cover",
+                    evt = "orientationchange" in win ? "orientationchange" : "resize",
+                    dpr = win.devicePixelRatio || 1,
+                    don = doc.documentElement,
+                    wd, oldWd, scale, cont, vp, mt,
+                    f = function () {
+                        wd = Math.min(don.clientWidth, win.screen.width);
+                        if (oldWd && oldWd === wd) return;
+                        oldWd = wd;
+                        scale = wd / size;
+                        cont = com + ", initial-scale=" + scale + ", maximum-scale=" + scale + ", minimum-scale=" + scale;
+                        vp = doc.querySelector("meta[name='viewport']");
+                        if (vp) {
+                            vp.content = cont;
+                        } else {
+                            mt = doc.createElement('meta'), mt.name = "viewport", mt.content = cont, doc.head.appendChild(mt);
+                        }
+                    };
+                    don.setAttribute("data-dpr", dpr), f(), win.addEventListener && win.addEventListener(evt, f, !1);
+            }(window, document);
+            // 备注：
+            // 1. oldWd
+            // 答: 存放上一次视口的宽度
+            // 2. if (oldWd && oldWd === wd) return;
+            // 答: resize时，宽度发生变化才重新调整视口，因为resize特殊情况(同时改变长宽，如横竖屏切换)会触发两次
+        </script>
+        <title>640</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                border: 0;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            html,
+            body,
+            .container {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .container {
+                padding: 0 320px 0 160px;
+            }
+
+            .middle,
+            .left,
+            .right {
+                float: left;
+                height: 100%;
+            }
+
+            .middle {
+                width: 100%;
+            }
+
+            .left {
+                width: 160px;
+                margin-left: -100%;
+                position: relative;
+                left: -160px;
+                background-color: #ccc;
+            }
+
+            .right {
+                width: 320px;
+                margin-left: -320px;
+                position: relative;
+                left: 320px;
+                background-color: #aaa;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 测试布局：圣杯布局 -->
+        <div class="container">
+            <div class="middle"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+    </body>
+
+</html>
