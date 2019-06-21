@@ -18,21 +18,18 @@
                         if (oldWd && oldWd === wd) return;
                         oldWd = wd;
                         scale = wd / size;
-                        cont = com + ", initial-scale=" + scale + ", maximum-scale=" + scale + ", minimum-scale=" + scale;
+                        cont = com + ", initial-scale=" + scale + ", maximum-scale=" + scale + ", minimum-scale=" +
+                            scale;
                         vp = doc.querySelector("meta[name='viewport']");
                         if (vp) {
                             vp.content = cont;
                         } else {
-                            mt = doc.createElement('meta'), mt.name = "viewport", mt.content = cont, doc.head.appendChild(mt);
+                            mt = doc.createElement('meta'), mt.name = "viewport", mt.content = cont, doc.head
+                                .appendChild(mt);
                         }
                     };
-                    don.setAttribute("data-dpr", dpr), f(), win.addEventListener && win.addEventListener(evt, f, !1);
+                don.setAttribute("data-dpr", dpr), f(), win.addEventListener && win.addEventListener(evt, f, !1);
             }(window, document);
-            // 备注：
-            // 1. oldWd
-            // 答: 存放上一次视口的宽度
-            // 2. if (oldWd && oldWd === wd) return;
-            // 答: resize时，宽度发生变化才重新调整视口，因为resize特殊情况(同时改变长宽，如横竖屏切换)会触发两次
         </script>
         <title>640</title>
         <style>
@@ -82,13 +79,28 @@
                 left: 320px;
                 background-color: #aaa;
             }
+
+            .dot0 {
+                height: 1px;
+                width: 1px;
+                background-color: #000;
+            }
+
+            .dot1 {
+                height: 1px;
+                width: 1px;
+                background-color: red;
+            }
         </style>
     </head>
 
     <body>
         <!-- 测试布局：圣杯布局 -->
         <div class="container">
-            <div class="middle"></div>
+            <div class="middle">
+                <div class="dot0"></div>
+                <div class="dot1"></div>
+            </div>
             <div class="left"></div>
             <div class="right"></div>
         </div>
